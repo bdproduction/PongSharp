@@ -9,7 +9,7 @@
 
 Нашата замисла беше да ја направиме играта Pong# која ќе биде во multiplayer mode, а целта на играта е иста како и во своите предци игри. При прво пуштање на играта се прикажува следниот изглед:
 
-slika 1
+![Alt text](bdproduction.github.com/bdproduction/PongSharp/blob/master/Pong%23/SlikiReadme/menu.png)
 
 Во Controls можете да видите со кои контроли треба да играат играчите. 
 
