@@ -102,20 +102,19 @@ namespace Pong
 
         private void goaled()
         {
-            int i = 0;
-            while (PowerUp[i])
-            {
-                PowerUp[i] = false;
-                i++;
-            }
+            
+            PowerUp = Array.ConvertAll<bool, bool>(PowerUp, b => b = false);
+
             hit = 0;
-            right.Height = left.Height = StartHeight;
-            pbPowerUp.Visible = false;
-            if (ScorePlayer1 < 5 && ScorePlayer2 < 5)
-                Countdown();
-            ball.Location = new Point(297, 100);
-            ballVel = rand.Next(0, 4);
-            speed = BarSpeed.Value;
+            
+                right.Height = left.Height = StartHeight;
+                pbPowerUp.Visible = false;
+                if (ScorePlayer1 < 5 && ScorePlayer2 < 5)
+                    Countdown();
+                ball.Location = new Point(297, 100);
+                ballVel = rand.Next(0, 4);
+                speed = BarSpeed.Value;
+            
 
         }
 
@@ -144,32 +143,33 @@ namespace Pong
                 {
                     pbPowerUp.Visible = true;
                     pbPowerUp.BackgroundImage = Image.FromFile("Reverse.png");
-                    pbPowerUp.Location = new Point(rand.Next(GamePanel.Location.X + 130, GamePanel.Size.Width - 130), rand.Next(GamePanel.Location.Y + 50, GamePanel.Height - 50));
+                    pbPowerUp.Location = new Point(rand.Next(GamePanel.Location.X + 130, GamePanel.Size.Width - 130), rand.Next(GamePanel.Location.Y + 50, GamePanel.Size.Height - 50));
                 }
                 if (PowerUp[1])
                 {
                     pbPowerUp.Visible = true;
                     pbPowerUp.BackgroundImage = Image.FromFile("SizeUp.png");
-                    pbPowerUp.Location = new Point(rand.Next(GamePanel.Location.X + 130, GamePanel.Size.Width - 130), rand.Next(GamePanel.Location.Y + 50, GamePanel.Height - 50));
+                    pbPowerUp.Location = new Point(rand.Next(GamePanel.Location.X + 130, GamePanel.Size.Width - 130), rand.Next(GamePanel.Location.Y + 50, GamePanel.Size.Height - 50));
                 }
                 if (PowerUp[2])
                 {
                     pbPowerUp.Visible = true;
                     pbPowerUp.BackgroundImage = Image.FromFile("SizeDown.png");
-                    pbPowerUp.Location = new Point(rand.Next(GamePanel.Location.X + 130, GamePanel.Size.Width - 130), rand.Next(GamePanel.Location.Y + 50, GamePanel.Height - 50));
+                    pbPowerUp.Location = new Point(rand.Next(GamePanel.Location.X + 130, GamePanel.Size.Width - 130), rand.Next(GamePanel.Location.Y + 50, GamePanel.Size.Height - 50));
                 }
                 if (PowerUp[3])
                 {
                     pbPowerUp.Visible = true;
                     pbPowerUp.BackgroundImage = Image.FromFile("LifePlus.png");
-                    pbPowerUp.Location = new Point(rand.Next(GamePanel.Location.X + 130, GamePanel.Size.Width - 130), rand.Next(GamePanel.Location.Y + 50, GamePanel.Height - 50));
+                    pbPowerUp.Location = new Point(rand.Next(GamePanel.Location.X + 130, GamePanel.Size.Width - 130), rand.Next(GamePanel.Location.Y + 50, GamePanel.Size.Height - 50));
 
                 }
 
             }
 
 
-            if (PowerUp.Count(b => b == true) == 1)
+            if (PowerUp.Count(b => b == true) >= 1)
+              
             {
                 if (PowerUp[0])
                 {
@@ -211,18 +211,22 @@ namespace Pong
                         PowerUp[1] = false;
                         if (ballVel == 0)
                         {
+                            if(left.Height<GamePanel.Height-80)
                             left.Height += 20;
                         }
                         else if (ballVel == 1)
                         {
+                            if (left.Height < GamePanel.Height - 80)
                             left.Height += 20;
                         }
                         else if (ballVel == 2)
                         {
+                            if (right.Height < GamePanel.Height - 80)
                             right.Height += 20;
                         }
                         else if (ballVel == 3)
                         {
+                            if (right.Height < GamePanel.Height - 80)
                             right.Height += 20;
                         }
                         pbPowerUp.Visible = false;
@@ -239,18 +243,22 @@ namespace Pong
                         PowerUp[2] = false;
                         if (ballVel == 0)
                         {
+                            if(left.Height >=20)
                             left.Height -= 10;
                         }
                         else if (ballVel == 1)
                         {
+                            if (left.Height >= 20)
                             left.Height -= 10;
                         }
                         else if (ballVel == 2)
                         {
+                            if (right.Height >= 20)
                             right.Height -= 10;
                         }
                         else if (ballVel == 3)
                         {
+                            if (right.Height >= 20)
                             right.Height -= 10;
                         }
                         pbPowerUp.Visible = false;
@@ -740,12 +748,8 @@ namespace Pong
             lbIme2.Visible = true;
             lbIme2.Location = new Point(GamePanel.Location.X + GamePanel.Size.Width - lbIme2.Size.Width, lbIme2.Location.Y);
 
-            int i = 0;
-            while (PowerUp[i])
-            {
-                PowerUp[i] = false;
-                i++;
-            }
+            PowerUp = Array.ConvertAll<bool, bool>(PowerUp, b => b = false);
+
             right.Height = left.Height = StartHeight;
             pbPowerUp.Visible = false;
         }
@@ -869,12 +873,9 @@ namespace Pong
             RestartGame();
             PauseGame.Visible = false;
             hit = 0;
-            int i = 0;
-            while (PowerUp[i])
-            {
-                PowerUp[i] = false;
-                i++;
-            }
+
+            PowerUp = Array.ConvertAll<bool, bool>(PowerUp, b => b = false);
+
             right.Height = left.Height = StartHeight;
             pbPowerUp.Visible = false;
         }
@@ -883,12 +884,9 @@ namespace Pong
         void RestartGame()
         {
             timer2.Stop();
-            int i = 0;
-            while (PowerUp[i])
-            {
-                PowerUp[i] = false;
-                i++;
-            }
+
+            PowerUp = Array.ConvertAll<bool, bool>(PowerUp, b => b = false);
+
             right.Height = left.Height = StartHeight;
             pbPowerUp.Visible = false;
             ball.Location = new Point(242, 71);
